@@ -24,6 +24,19 @@ type Config struct {
 	EnableAccessConsole bool   `json:"enable_access_console" mapstructure:"enable_access_console"`
 }
 
+func init() {
+	conf := Config{
+		Level:               "info",
+		TimeFormat:          TimeFormat,
+		UTCTime:             false,
+		EnableFile:          false,
+		EnableConsole:       true,
+		EnableAccessFile:    false,
+		EnableAccessConsole: false,
+	}
+	conf.Init()
+}
+
 func (c *Config) Init() error {
 	err := c.validate()
 	if err != nil {
